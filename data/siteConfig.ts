@@ -1,6 +1,6 @@
 import type { SiteConfig } from "@/lib/types";
 const siteConfig: SiteConfig = {
-  avatar: "/avatar.webp",
+  avatar: "/blog/avatar.webp",
   siteUrl: "https://m1nxy.xyz",
   siteName: "M1nxy's Blog",
   siteDescription: "Where I talk about current projects and share my opinions.",
