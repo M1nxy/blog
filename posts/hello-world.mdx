@@ -1,0 +1,32 @@
+---
+title: "Mining Away"
+description: "I don’t know what to mine!"
+date: "2023-11-23"
+tags: ['projects', 'games', 'java', 'oop']
+---
+
+## Summary
+I started a *new* project. It’s a fabric mod on 1.20 that aims to replicate the ui and menus from the console editions of Minecraft.
+I used Minecraft: Wii-U Edition as a reference for the look and behaviour of different interfaces as I already had an emulator setup with dumped keys and the title installed. This had a major impact on my productivity as during my previous attempt at recreating the menu I had referenced the minecraft wiki for screenshots of the game which was less than ideal for screens like the options menu.
+
+## Titlescreen
+I began by recreating the titlescreen to the best of my ability and gained some familiarity with exploring the decompiled classes and overriding methods and/or args to alter behaviour.
+This process was relatively easy and only really required me to insert an early return in the init function to prevent some widgets loading, replace the buttons with my own custom layout and alter a few textures. (Edition logo and button highlight).
+
+<figure>
+  <img src="/images/java_titlescreen.webp" alt="" width={"100%"} height={"100"}/>
+  <figcaption>Before image taken from the [minecraft wiki](https://minecraft.wiki)</figcaption>
+</figure>
+<figure>
+  <img src="/images/recreated_titlescreen.webp" alt="" width={"100%"} height={"100"}/>
+  <figcaption>Titlescreen with new logo, widgets removed and new button layout.</figcaption>
+</figure>
+
+## Options Menus
+I'm happy with the titlescreen for now so I began work on the options menu. This small sidequest allowed me to futher familiarise with some basic minecraft classes and during this exploration I managed to figure out how to import textures and use texture offsets to tile them.
+My 1st goal was to recreate a small widget that is constantly used for options menus as well as the ingame host options screens and pause menus. Below you can see the basic demo I got working and the code behind it.
+My next goal is to extend one of the default list classes or implement my own to allow this widget to parent others and handle navigating between them. This will also allow me to have it size appropriately based on the child count. (As seen in console edition).
+<figure className="flex flex-col">
+  <img src="/images/options_widget.webp" style={{imageRendering: 'pixelated'}} alt="" width={"100%"} height={"100"}/>
+  <figcaption>Options menu background widget with tiling.</figcaption>
+</figure>
