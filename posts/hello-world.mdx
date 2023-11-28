@@ -26,6 +26,17 @@ This process was relatively easy and only really required me to insert an early 
 I'm happy with the titlescreen for now so I began work on the options menu. This small sidequest allowed me to futher familiarise with some basic minecraft classes and during this exploration I managed to figure out how to import textures and use texture offsets to tile them.
 My 1st goal was to recreate a small widget that is constantly used for options menus as well as the ingame host options screens and pause menus. Below you can see the basic demo I got working and the code behind it.
 My next goal is to extend one of the default list classes or implement my own to allow this widget to parent others and handle navigating between them. This will also allow me to have it size appropriately based on the child count. (As seen in console edition).
+
+```java
+public void drawBackground(DrawContext context, int len) {
+  context.drawTexture(BACKGROUND_TEXTURE, this.x, this.y, 0, 0, BACKGROUND_WIDTH, BACKGROUND_OFFSET, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+  for (int count = 0; count < len; count++) {
+    context.drawTexture(BACKGROUND_TEXTURE, this.x, this.y + 16 * (count + 1), 0, 16, BACKGROUND_WIDTH, BACKGROUND_OFFSET, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+  }
+  context.drawTexture(BACKGROUND_TEXTURE, this.x, this.y + 16 + (16 * len), 0, 32, BACKGROUND_WIDTH, BACKGROUND_OFFSET, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+}
+```
+
 <figure className="flex flex-col">
   <img src="/blog/images/options_widget.webp" style={{imageRendering: 'pixelated'}} alt="" width={"100%"} height={"100"}/>
   <figcaption>Options menu background widget with tiling.</figcaption>
