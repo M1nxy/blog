@@ -4,6 +4,7 @@ const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
   distDir: 'dist',
+  basePath: '/blog',
   images: {
     formats: ['image/webp'],
     unoptimized: true
