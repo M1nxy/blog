@@ -10,7 +10,7 @@ export const Header: React.FC = () => {
     <header className="py-8 flex justify-between items-center">
       <Link href="/" className="font-bold">
         {siteConfig.avatar ? (
-          <span className="flex">
+          <span>
             <Image
               className="rounded-md"
               src={siteConfig.avatar}
