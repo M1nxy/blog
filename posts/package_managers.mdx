@@ -1,0 +1,39 @@
+---
+title: "Better alternatives to npm"
+description: "A short rant about package managers"
+date: "2023-12-05"
+tags: ['tools', 'nodejs', 'rants']
+---
+
+## NPM Kinda sucks
+Ok not really but there are better alternatives that solve many of my gripes with npm such as oversized node_modules in every project folder, slow package resolve and download times while serving as 1:1 replacements. 
+Both tools I'm going to talk about were built with the node.js runtime in mind and are included by default in corepack.
+This is also a reason why I omitted [bun](https://bun.sh/), by default it uses It’s own runtime and I would not consider it 100% a 1:1 replacement for npm.
+They also both use the [npm package registry](https://www.npmjs.com/) so you won't be missing anything.
+Both tools also have qol additions to npm like command aliasing and more readable, better formatted outputs.
+One small pitfall for both tools mentioned is their custom lockfile, this poses a potential problem in any project that tracks the lockfile and cannot be trivially solved.
+
+## Yarn berry
+[Yarn berry](https://github.com/yarnpkg/berry) is a modern nodejs package manager written from the ground up with performance and extensibility in mind. 
+It supports many of the same features as pnpm while allowing extensions through it’s [plugin api](https://yarnpkg.com/features/extensibility). 
+Like pnpm it features parallel downloading and similarly saves the user disk space via hard linking from a centralised cache; this has the added advantage of resolving packages faster.
+It also has support for workspaces (monorepo), it does this via adding the workspace to the package.json referencing other submodules with the `workspace:` protocol.
+These links are then resolved when publishing via `yarn npm publish` as can be seen [here](https://yarnpkg.com/features/workspaces#cross-references).
+
+## PNPM ⭐️
+[pnpm](https://pnpm.io/) is what I personally use and would recommend to anyone considering moving away from npm.
+It is much faster than npm, supporting parallel downloads and hard linking packages from a cache in a way similar to that of yarn. 
+It also has sensible defaults and fallback options to certain commands making them much more flexible and easier to work with. 
+For example `pnpm start` will first look for a `start` property in your package file and if not found will fallback to `node server.js` only failing if neither are present.
+
+Where it differs from yarn is it’s default peer dependency installs and greater flexibility with workspaces.
+It achieves the latter via a file in the root of the workspace that allows pnpm to resolve dependencies to local packages by targeting them either with the either:
+  - The `workspace:` protocol (same as yarn)
+  - A defined alias
+  - The relative path of the module
+
+I prefer the extra choice pnpm gives you in this regard and all options resolve to normal looking versions in a way similar to yarn. ([see here](https://pnpm.io/workspaces#publishing-workspace-packages))
+
+## Conclusion
+Unless you are working on legacy node projects or need to track your lock-file and work with a team committed to using npm, your migration is long overdue. 
+Either package manager is a valid choice although if you are planning on using a monorepo or already are I would strongly lean towards pnpm.
